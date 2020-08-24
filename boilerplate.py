@@ -1,4 +1,5 @@
 import os
+from time import sleep
 
 # Get current path
 
@@ -60,9 +61,20 @@ def createStaticFolder():
     return
 
 
+def openProject():
+    # global app_name
+    print(os.getcwd())
+    os.chdir("../..")
+    print(os.getcwd())
+    os.system("code .")
+    sleep(3)
+    os.system("exit")
+
+
 createApp()
 createPyFiles()
 createStaticFolder()
+openProject()
 
 """
     Write default code in python and html files
