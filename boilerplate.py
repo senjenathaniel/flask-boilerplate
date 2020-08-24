@@ -3,8 +3,7 @@ import os
 # Get current path
 
 # Get application name from user
-project_name = input("Project name: ")
-app_name = input("Enter app name: ")
+app_name = input("App name: ")
 # Get the user to name the python files to put in app dir
 py_files = []
 # Get the user to name hmtl files to put templates
@@ -14,35 +13,32 @@ template_files = []
 def createApp():
     global app_name
     # System commmand to create app with Poetry
-    poetry_command = "poetry new " + project_name + " --name application"
+    poetry_command = "poetry new " + app_name + " --name application"
     os.system(poetry_command)
+    print("Running Poetry command...\n")
+
+    os.chdir(app_name)
 
     # Create root app files
     os.system("touch config.py start.sh wsgi.py")
+    print("Creating core files...\n")
     return
 
 
 def createPyFiles():
-    os.chdir(project_name + "/application")
-    print(os.getcwd() + " :start CPY")
+    os.chdir("application")
 
-    # Create files
     os.system('touch auth.py forms.py models.py routes.py')
-
-    # return to root folder
+    print("Creating project files...\n")
     os.chdir('..')
-    print(os.getcwd() + " :end CPY")
+
     return
 
 
 def createStaticFolder():
-    # Change into the application dir
-    global app_name
-    
     os.chdir("application")
 
-    print(os.getcwd() + " :start CSF")
-
+    print("Creating static directories and files...\n")
     os.system('mkdir static')
     os.chdir('static')
 
